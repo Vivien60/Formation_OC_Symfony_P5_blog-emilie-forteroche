@@ -10,13 +10,19 @@
     private string $title = "";
     private string $content = "";
     private ?DateTime $dateCreation = null;
-    private ?DateTime $dateUpdate = null;  
+     private ?DateTime $dateUpdate = null;
+     private int $nbViews = 0;
 
-    /**
-     * Setter pour l'id de l'utilisateur. 
+     public function incNbViews() : int
+     {
+         return ++$this->nbViews;
+     }
+
+     /**
+     * Setter pour l'id de l'utilisateur.
      * @param int $idUser
      */
-    public function setIdUser(int $idUser) : void 
+    public function setIdUser(int $idUser) : void
     {
         $this->idUser = $idUser;
     }
@@ -127,4 +133,14 @@
     {
         return $this->dateUpdate;
     }
+
+     public function getNbViews(): int
+     {
+         return $this->nbViews;
+     }
+
+     public function setNbViews(int $nbViews): void
+     {
+         $this->nbViews = $nbViews;
+     }
  }

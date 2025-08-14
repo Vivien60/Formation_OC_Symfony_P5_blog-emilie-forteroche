@@ -1,0 +1,1 @@
+ALTER TABLE article ADD nb_views INT;
