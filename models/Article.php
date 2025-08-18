@@ -12,6 +12,7 @@
     private ?DateTime $dateCreation = null;
      private ?DateTime $dateUpdate = null;
      private int $nbViews = 0;
+     private int $nbComments = 0;
 
      public function incNbViews() : int
      {
@@ -142,5 +143,15 @@
      public function setNbViews(int $nbViews): void
      {
          $this->nbViews = $nbViews;
+     }
+
+     public function getNbComments(): int
+     {
+         return $this->nbComments;
+     }
+
+     public function setNbComments(int $nbComments): void
+     {
+         $this->nbComments = $nbComments;
      }
  }

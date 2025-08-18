@@ -12,7 +12,7 @@ class AdminController {
     public function showAdmin() : void
     {
         // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
+        $this->redirectIfUserNotConnected();
 
         // On récupère les articles.
         $articleManager = new ArticleManager();
@@ -29,7 +29,7 @@ class AdminController {
      * Vérifie que l'utilisateur est connecté.
      * @return void
      */
-    private function checkIfUserIsConnected() : void
+    private function redirectIfUserNotConnected() : void
     {
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['user'])) {
@@ -76,7 +76,7 @@ class AdminController {
         }
 
         // On connecte l'utilisateur.
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = serialize($user);
         $_SESSION['idUser'] = $user->getId();
 
         // On redirige vers la page d'administration.
@@ -102,7 +102,7 @@ class AdminController {
      */
     public function showUpdateArticleForm() : void 
     {
-        $this->checkIfUserIsConnected();
+        $this->redirectIfUserNotConnected();
 
         // On récupère l'id de l'article s'il existe.
         $id = Utils::request("id", -1);
@@ -130,7 +130,7 @@ class AdminController {
      */
     public function updateArticle() : void 
     {
-        $this->checkIfUserIsConnected();
+        $this->redirectIfUserNotConnected();
 
         // On récupère les données du formulaire.
         $id = Utils::request("id", -1);
@@ -165,7 +165,7 @@ class AdminController {
      */
     public function deleteArticle() : void
     {
-        $this->checkIfUserIsConnected();
+        $this->redirectIfUserNotConnected();
 
         $id = Utils::request("id", -1);
 
@@ -175,5 +175,17 @@ class AdminController {
        
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
+    }
+
+    public function monitorArticles() : void
+    {
+        $this->redirectIfUserNotConnected();
+        // On récupère les articles.
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticles();
+        $view = new View("Monitoring des article");
+        $view->render("monitorArticles", [
+            'articles' => $articles
+        ]);
     }
 }

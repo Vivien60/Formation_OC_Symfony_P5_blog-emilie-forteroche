@@ -1,6 +1,6 @@
 <?php 
 
-class ArticleController 
+class ArticleController
 {
     /**
      * Affiche la page d'accueil.
@@ -26,9 +26,13 @@ class ArticleController
 
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
-        
+
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
+        }
+        if($this->userConnected() == null){
+            $article->incNbViews();
+            $articleManager->updateArticle($article);
         }
 
         $commentManager = new CommentManager();
@@ -55,5 +59,17 @@ class ArticleController
     public function showApropos() {
         $view = new View("A propos");
         $view->render("apropos");
+    }
+
+    /**
+     * Retourne l'utilisateur est connecté.
+     */
+    private function userConnected() : ?User
+    {
+        // On vérifie que l'utilisateur est connecté.
+        if (isset($_SESSION['user'])) {
+            return unserialize($_SESSION['user']);
+        }
+        return null;
     }
 }

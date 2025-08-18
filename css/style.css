@@ -305,16 +305,25 @@ a.info {
 
 /**
  * Partie admin
- */ 
+ */
 
-.adminArticle {
+.adminArticle, .monitoringArticles {
     margin-bottom: 20px;
     background-color: var(--commentPaleColor);
     color: white;
 }
+/**
+ * Partie admin
+ */
+
+.monitoringArticles {
+    width: 100%;
+    min-width: 500px;
+}
 
 .articleLine {
-    display: flex; 
+    display: flex;
+    width: 100%;
 }
 
 .articleLine div {
@@ -328,8 +337,16 @@ a.info {
     width: 200px;
 }
 
+.monitoringArticles .articleLine .title {
+    flex-grow: 4;
+}
+
 .articleLine .content {
     flex-grow: 1;
+}
+
+.monitoringArticles .articleLine .content {
+    flex-basis: 50px;
 }
 
 .articleLine > div {
