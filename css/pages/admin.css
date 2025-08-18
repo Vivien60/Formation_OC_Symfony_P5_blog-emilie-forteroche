@@ -1,0 +1,55 @@
+.monitoringArticles, .adminArticles {
+    width: 100%;
+}
+
+.adminArticles .adminArticles--header, .monitoringArticles .monitoringArticles--header {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.adminArticles__list, .monitoring__list {
+    margin-bottom: 20px;
+    background-color: var(--commentPaleColor);
+    color: white;
+    width: 100%;
+    min-width: 500px;
+}
+
+.adminArticles .adminArticles--header h2, .monitoringArticles .monitoringArticles--header h2 {
+    width: auto;
+}
+
+
+.articleLine {
+    display: flex;
+    width: 100%;
+}
+
+.articleLine div {
+    display: flex;
+    align-items: center;
+}
+
+.articleLine .title {
+    font-weight: bold;
+    min-width: 200px;
+    width: 200px;
+}
+
+.monitoring__list .articleLine .title {
+    flex-grow: 4;
+}
+
+.articleLine .content {
+    flex-grow: 1;
+}
+
+.monitoring__list .articleLine .content {
+    flex-basis: 50px;
+}
+
+.articleLine > div {
+    padding: 20px;
+    border: 1px solid var(--backgroundColor);
+}

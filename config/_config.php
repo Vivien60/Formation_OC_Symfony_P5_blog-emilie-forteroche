@@ -14,4 +14,5 @@
     define('DB_NAME', 'blog_forteroche');
     define('DB_USER', 'root');
     define('DB_PASS', '');
+    define('BASE_URI', "http://openclassrooms.local/Formation_OC_Symfony_P5_blog-emilie-forteroche/");
 
