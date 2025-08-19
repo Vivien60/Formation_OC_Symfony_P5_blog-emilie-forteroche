@@ -72,10 +72,13 @@ class DBManager
     {
         $query = $this->db->prepare($sql);
         if (isset($params['order'])) {
-            $query->bindParam(':order', $params['order'], PDO::PARAM_INT);
+            $query->bindValue(':order', $params['order'], PDO::PARAM_INT);
             unset($params['order']);
         }
-        $query->execute($params?:null);
+        foreach ($params as $key => $value) {
+            $query->bindValue(":$key", $value);
+        }
+        $query->execute();
         return $query;
     }
 }
