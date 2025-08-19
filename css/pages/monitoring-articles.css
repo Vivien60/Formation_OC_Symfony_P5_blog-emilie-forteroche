@@ -1,0 +1,3 @@
+.monitoring__list.gridList {
+    grid-template-columns: 8fr 1fr 2fr 2fr 2fr;
+}
