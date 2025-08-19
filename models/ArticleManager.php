@@ -9,15 +9,23 @@ class ArticleManager extends AbstractEntityManager
      * Récupère tous les articles.
      * @return array : un tableau d'objets Article.
      */
-    public function getAllArticles() : array
+    public function getAllArticles(?string $orderColumn = 'default', ?int $direction = 0) : array
     {
+        $order = match($orderColumn) {
+            'title' => 3,
+            'date-pub' => 5,
+            'views' => 7,
+            default => 1,
+        };
+        $orderDir = $direction ? 'desc' : 'asc';
+
         $sql = "SELECT article.*, count(comment.id) as nb_comments
                 FROM article 
                     LEFT JOIN comment on article.id = comment.id_article 
-                GROUP BY article.id";
-        $result = $this->db->query($sql);
+                GROUP BY article.id
+                ORDER BY :order $orderDir";
+        $result = $this->db->query($sql, ['order' => $order]);
         $articles = [];
-
         while ($article = $result->fetch()) {
             $articles[] = new Article($article);
         }

@@ -181,8 +181,10 @@ class AdminController {
     {
         $this->redirectIfUserNotConnected();
         // On récupère les articles.
+        $order = Utils::request("order", null);
+        $direction = Utils::request("dir", null);
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
+        $articles = $articleManager->getAllArticles($order, $direction);
         $view = new View("Monitoring des article");
         $view->render("monitorArticles", [
             'articles' => $articles
