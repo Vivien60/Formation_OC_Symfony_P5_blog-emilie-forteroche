@@ -191,7 +191,7 @@ class AdminController {
         ]);
     }
 
-    public function monitorComments()
+    public function monitorComments(): void
     {
         $this->redirectIfUserNotConnected();
         // On récupère les commentaires.
@@ -208,5 +208,17 @@ class AdminController {
             'comments' => $comments,
             'article' => $article
         ]);
+    }
+
+    public function deleteComment()
+    {
+        $this->redirectIfUserNotConnected();
+        $idComment = Utils::request("id", null);
+        $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById($idComment);
+        if($comment?->getId()) {
+            $commentManager->deleteComment($comment);
+        }
+        Utils::redirect("monitorArticles");
     }
 }
