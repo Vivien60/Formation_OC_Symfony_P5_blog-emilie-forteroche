@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@300;400;500;700&display=swap');
+/**
+Modules
+*/
+@import url('modules/admin.css');
+/**
+Pages
+ */
+@import url('pages/admin-comments.css');
+@import url('pages/admin-articles.css');
+@import url('pages/monitoring-articles.css');
 
 /**
  * Reset css.
@@ -303,38 +313,56 @@ a.info {
     font-weight: bold;
 }
 
-/**
- * Partie admin
- */ 
-
-.adminArticle {
+.commentPaleTable {
     margin-bottom: 20px;
     background-color: var(--commentPaleColor);
     color: white;
+    width: 100%;
+    min-width: 500px;
 }
 
-.articleLine {
-    display: flex; 
+.commentPaleTable .tableLine > div, .commentPaleTable.gridList > div {
+    padding: 20px;
+    border: 1px solid var(--backgroundColor);
 }
 
-.articleLine div {
+.tableLine {
+    display: flex;
+    width: 100%;
+}
+
+.tableLine .content {
+    flex-grow: 1;
+}
+
+.gridList div, .tableLine div {
     display: flex;
     align-items: center;
 }
 
-.articleLine .title {
-    font-weight: bold;
-    min-width: 200px;
-    width: 200px;
+.gridList {
+    display: grid;
 }
 
-.articleLine .content {
-    flex-grow: 1;
+.gridList--header {
+    display: flex;
+    justify-content: space-between;
+    line-height:28px;
+    gap:10px;
+    align-items: center;
 }
 
-.articleLine > div {
-    padding: 20px;
-    border: 1px solid var(--backgroundColor);
+.gridList--header h3, .gridList--header .gridList--order {
+    display: inline;
+}
+
+.gridList--order {
+    font-size: 24px;
+}
+
+.gridList__cell--button {
+    display: flex;
+    text-align: center;
 }
 
 /** 

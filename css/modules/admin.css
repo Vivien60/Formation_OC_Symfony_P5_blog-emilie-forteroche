@@ -1,0 +1,35 @@
+.adminContent {
+    width: 100%;
+}
+
+.adminContent__header {
+    display: flex;
+    justify-content: space-between;
+    row-gap:20px;
+    flex-wrap: wrap;
+}
+
+.adminContent__header > * {
+    flex : 0 100%;
+}
+
+.adminContent__header--main {
+    text-align: center;
+}
+
+.adminContent__header--aside {
+    flex: 0 auto;
+}
+
+.adminContent__header h2 {
+    width: auto;
+}
+
+.adminContent .title {
+    font-weight: bold;
+    min-width: 200px;
+}
+.gridList__cell--button {
+    display: flex;
+    text-align: center;
+}

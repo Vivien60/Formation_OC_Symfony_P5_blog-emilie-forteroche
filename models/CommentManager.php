@@ -10,10 +10,16 @@ class CommentManager extends AbstractEntityManager
      * @param int $idArticle : l'id de l'article.
      * @return array : un tableau d'objets Comment.
      */
-    public function getAllCommentsByArticleId(int $idArticle) : array
+    public function getAllCommentsByArticleId(int $idArticle, ?string $orderColumn = 'default', ?int $direction = 0) : array
     {
-        $sql = "SELECT * FROM comment WHERE id_article = :idArticle";
-        $result = $this->db->query($sql, ['idArticle' => $idArticle]);
+        $order = match($orderColumn) {
+            'author' => 3,
+            'date-pub' => 5,
+            default => 1,
+        };
+        $orderDir = $direction ? 'desc' : 'asc';
+        $sql = "SELECT * FROM comment WHERE id_article = :idArticle order by :order $orderDir";
+        $result = $this->db->query($sql, ['idArticle' => $idArticle, 'order' => $order]);
         $comments = [];
 
         while ($comment = $result->fetch()) {
