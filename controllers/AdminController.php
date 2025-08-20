@@ -216,7 +216,7 @@ class AdminController {
         $idComment = Utils::request("id", null);
         $commentManager = new CommentManager();
         $comment = $commentManager->getCommentById($idComment);
-        if($comment?->getId()) {
+        if($comment) {
             $commentManager->deleteComment($comment);
         }
         Utils::redirect("monitorComments", ["id" => $comment->getIdArticle()]);
