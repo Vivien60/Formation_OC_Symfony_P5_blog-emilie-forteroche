@@ -1,3 +1,11 @@
 .monitoring__list.gridList {
     grid-template-columns: 8fr 1fr 2fr 2fr 2fr;
 }
+
+.monitoring__list.gridList > div:nth-child(10n + 6),
+.monitoring__list.gridList > div:nth-child(10n + 7),
+.monitoring__list.gridList > div:nth-child(10n + 8),
+.monitoring__list.gridList > div:nth-child(10n + 9),
+.monitoring__list.gridList > div:nth-child(10n + 10) {
+    background:var(--commentDarkerColor);
+}
