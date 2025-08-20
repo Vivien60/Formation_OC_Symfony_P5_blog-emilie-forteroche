@@ -190,4 +190,36 @@ class AdminController {
             'articles' => $articles
         ]);
     }
+
+    public function monitorComments(): void
+    {
+        $this->redirectIfUserNotConnected();
+        // On récupère les commentaires.
+        $order = Utils::request("order", null);
+        $direction = Utils::request("dir", null);
+        $idArticle = Utils::request("id", null);
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getAllCommentsByArticleId($idArticle, $order, $direction);
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($idArticle);
+        $view = new View("Commentaires");
+        $view->render("adminComments", [
+            'comments' => $comments,
+            'article' => $article
+        ]);
+    }
+
+    public function deleteComment()
+    {
+        $this->redirectIfUserNotConnected();
+        $idComment = Utils::request("id", null);
+        $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById($idComment);
+        if($comment) {
+            $commentManager->deleteComment($comment);
+        }
+        Utils::redirect("monitorComments", ["id" => $comment->getIdArticle()]);
+        unset($comment);
+    }
 }

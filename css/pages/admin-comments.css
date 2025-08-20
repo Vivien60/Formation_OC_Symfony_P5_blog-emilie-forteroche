@@ -1,0 +1,6 @@
+.monitoring-comments {
+    width: 100%;
+}
+.monitoring-comments__list.gridList {
+    grid-template-columns: 2fr 8fr 2fr 2fr;
+}

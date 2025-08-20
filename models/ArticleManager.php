@@ -70,7 +70,7 @@ class ArticleManager extends AbstractEntityManager
      */
     public function addArticle(Article $article) : void
     {
-        $sql = "INSERT INTO article (id_user, title, content, date_creation) VALUES (:id_user, :title, :content, NOW())";
+        $sql = "INSERT INTO article (id_user, title, content, date_creation, date_update) VALUES (:id_user, :title, :content, NOW(), NOW())";
         $this->db->query($sql, [
             'id_user' => $article->getIdUser(),
             'title' => $article->getTitle(),
@@ -85,11 +85,10 @@ class ArticleManager extends AbstractEntityManager
      */
     public function updateArticle(Article $article) : void
     {
-        $sql = "UPDATE article SET title = :title, content = :content, nb_views = :nb_views, date_update = NOW() WHERE id = :id";
+        $sql = "UPDATE article SET title = :title, content = :content, date_update = NOW() WHERE id = :id";
         $this->db->query($sql, [
             'title' => $article->getTitle(),
             'content' => $article->getContent(),
-            'nb_views' => $article->getNbViews(),
             'id' => $article->getId(),
         ]);
     }
@@ -103,5 +102,14 @@ class ArticleManager extends AbstractEntityManager
     {
         $sql = "DELETE FROM article WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
+    }
+
+    public function updateNbViews(Article $article)
+    {
+        $sql = "UPDATE article SET nb_views = :nb_views WHERE id = :id";
+        $this->db->query($sql, [
+            'nb_views' => $article->getNbViews(),
+            'id' => $article->getId(),
+        ]);
     }
 }
