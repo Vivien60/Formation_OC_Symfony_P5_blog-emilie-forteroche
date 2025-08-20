@@ -11,5 +11,5 @@
 .monitoring-comments__list.gridList > div:nth-child(10n + 6),
 .monitoring-comments__list.gridList > div:nth-child(10n + 7),
 .monitoring-comments__list.gridList > div:nth-child(10n + 8) {
-    background:rgba(0,122,184,0.25);
+    background:var(--commentDarkerColor);
 }

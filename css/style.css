@@ -30,6 +30,7 @@ Pages
     --dateColor: #3f56a4;
     --quoteColor: #c5cbe4;
     --commentPaleColor: #99a140;
+    --commentDarkerColor: rgba(0,122,184,0.25);
     --commentColor: #255E33;
 }
 
