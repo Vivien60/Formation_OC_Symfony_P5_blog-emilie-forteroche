@@ -30,9 +30,7 @@ class ArticleController
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
         }
-        if($this->userConnected() == null){
-            $articleManager->incNbViews($article);
-        }
+        $articleManager->incNbViews($article);
 
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);
@@ -65,10 +63,6 @@ class ArticleController
      */
     private function userConnected() : ?User
     {
-        // On vérifie que l'utilisateur est connecté.
-        if (isset($_SESSION['user'])) {
-            return unserialize($_SESSION['user']);
-        }
-        return null;
+        return Utils::userConnected();
     }
 }
