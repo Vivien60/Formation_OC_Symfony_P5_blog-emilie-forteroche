@@ -219,6 +219,7 @@ class AdminController {
         if($comment?->getId()) {
             $commentManager->deleteComment($comment);
         }
-        Utils::redirect("monitorArticles");
+        Utils::redirect("monitorComments", ["id" => $comment->getIdArticle()]);
+        unset($comment);
     }
 }
