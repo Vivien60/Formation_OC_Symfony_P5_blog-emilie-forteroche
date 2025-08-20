@@ -104,7 +104,13 @@ class ArticleManager extends AbstractEntityManager
         $this->db->query($sql, ['id' => $id]);
     }
 
-    public function updateNbViews(Article $article)
+    public function incNbViews(Article $article) : void
+    {
+        $article->incNbViews();
+        $this->updateOnlyNbViews($article);
+    }
+
+    public function updateOnlyNbViews(Article $article)
     {
         $sql = "UPDATE article SET nb_views = :nb_views WHERE id = :id";
         $this->db->query($sql, [

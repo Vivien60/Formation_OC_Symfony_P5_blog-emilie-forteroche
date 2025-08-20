@@ -31,8 +31,7 @@ class ArticleController
             throw new Exception("L'article demandé n'existe pas.");
         }
         if($this->userConnected() == null){
-            $article->incNbViews();
-            $articleManager->updateNbViews($article);
+            $articleManager->incNbViews($article);
         }
 
         $commentManager = new CommentManager();
