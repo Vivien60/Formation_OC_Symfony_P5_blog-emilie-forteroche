@@ -106,8 +106,10 @@ class ArticleManager extends AbstractEntityManager
 
     public function incNbViews(Article $article) : void
     {
-        $article->incNbViews();
-        $this->updateOnlyNbViews($article);
+        if(!Utils::userConnected()) {
+            $article->incNbViews();
+            $this->updateOnlyNbViews($article);
+        }
     }
 
     public function updateOnlyNbViews(Article $article)

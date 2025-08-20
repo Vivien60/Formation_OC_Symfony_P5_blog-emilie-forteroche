@@ -87,4 +87,13 @@ class Utils {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
 
+    public static function userConnected() : User|null
+    {
+        // On vérifie que l'utilisateur est connecté.
+        if (isset($_SESSION['user'])) {
+            return unserialize($_SESSION['user']);
+        }
+        return null;
+    }
+
 }
