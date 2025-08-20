@@ -32,7 +32,7 @@ class ArticleController
         }
         if($this->userConnected() == null){
             $article->incNbViews();
-            $articleManager->updateArticle($article);
+            $articleManager->updateNbViews($article);
         }
 
         $commentManager = new CommentManager();
