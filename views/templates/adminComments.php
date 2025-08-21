@@ -8,7 +8,7 @@
 ?>
 <div class="monitoring-comments adminContent">
     <div class="adminContent__header">
-        <h2 class="adminContent__header--main"><?= $article->getTitle() ?></h2>
+        <h2 class="adminContent__header--main"><?= Utils::format($article->getTitle()) ?></h2>
         <h2 class="adminContent__header--aside">Commentaires</h2>
         <h2 class="adminContent__header--aside"><a href="?action=monitorArticles">Monitoring des articles</a></h2>
     </div>
@@ -20,8 +20,8 @@
         <?php foreach ($comments as $comment) {
             /** @var Comment $comment */
             ?>
-            <div class="content"><?= $comment->getPseudo() ?></div>
-            <div class="content"><?= $comment->getContent() ?></div>
+            <div class="content"><?= Utils::format($comment->getPseudo()) ?></div>
+            <div class="content"><?= Utils::format($comment->getContent()) ?></div>
             <div class="content"><?= $comment->getDateCreation()->format('Y-m-d') ?></div>
             <div><a class="submit gridList__cell--button" href="?action=deleteComment&id=<?= $comment->getId() ?>">Supprimer</a></div>
         <?php } ?>

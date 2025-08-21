@@ -18,7 +18,7 @@
         <?php foreach ($articles as $article) {
             /** @var Article $article */
             ?>
-                <div class="title"><?= $article->getTitle() ?></div>
+                <div class="title"><?= Utils::format($article->getTitle()) ?></div>
                 <div class="content"><?= $article->getNbViews() ?></div>
                 <div class="content"><?= $article->getNbComments() ?></div>
                 <div class="content"><?= $article->getDateCreation()->format('Y-m-d') ?></div>
