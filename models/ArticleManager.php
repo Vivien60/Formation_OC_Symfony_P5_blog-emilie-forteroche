@@ -24,10 +24,10 @@ class ArticleManager extends AbstractEntityManager
         // ce qui les obligera à être entouré de guillemets, et ne fonctionnera pas.
         //Il est donc nécessaire de concaténer le sens du tri, en utilisant une whitelist par sécurité
         $orderDir = $direction ? 'desc' : 'asc';
-        $sql = "SELECT article.*, count(comment.id) as nb_comments
-                FROM article 
-                    LEFT JOIN comment on article.id = comment.id_article 
-                GROUP BY article.id
+        $sql = "SELECT a.id, a.id_user, a.title, a.content, a.date_creation, a.nb_views, count(comment.id) as nb_comments
+                FROM article a
+                    LEFT JOIN comment on a.id = comment.id_article
+                GROUP BY a.id
                 ORDER BY :order $orderDir";
         $result = $this->db->query($sql, [
             'order' => $order,
@@ -46,7 +46,7 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getArticleById(int $id) : ?Article
     {
-        $sql = "SELECT * FROM article WHERE id = :id";
+        $sql = "SELECT a.id, a.id_user, a.title, a.content, a.date_creation, a.nb_views FROM article a WHERE id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
         $article = $result->fetch();
         if ($article) {
@@ -111,15 +111,17 @@ class ArticleManager extends AbstractEntityManager
         $this->db->query($sql, ['id' => $id]);
     }
 
+    /**
+     * Incrémente le nombre de vues d'un article donné et sauvegarde
+     */
     public function incNbViews(Article $article) : void
     {
         if(!Utils::userConnected()) {
             $article->incNbViews();
-            $this->updateOnlyNbViews($article);
         }
     }
 
-    public function updateOnlyNbViews(Article $article)
+    public function updateNbViews(Article $article)
     {
         $sql = "UPDATE article SET nb_views = :nb_views WHERE id = :id";
         $this->db->query($sql, [
