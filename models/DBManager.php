@@ -64,6 +64,7 @@ class DBManager
     }
 
     /**
+     * Exécute une requête SQL préparée
      * @param string $sql
      * @param array $params
      * @return array

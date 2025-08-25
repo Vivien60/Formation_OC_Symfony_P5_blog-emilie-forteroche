@@ -160,7 +160,7 @@ class AdminController {
 
 
     /**
-     * Suppression d'un article.
+     * Supprime d'un article.
      * @return void
      */
     public function deleteArticle() : void
@@ -177,6 +177,9 @@ class AdminController {
         Utils::redirect("admin");
     }
 
+    /**
+     * Afficher la page de monitoring des articles.
+     */
     public function monitorArticles() : void
     {
         $this->redirectIfUserNotConnected();
@@ -191,6 +194,9 @@ class AdminController {
         ]);
     }
 
+    /**
+     * Afficher la page de monitoring des commentaires.
+     */
     public function monitorComments(): void
     {
         $this->redirectIfUserNotConnected();
@@ -210,6 +216,9 @@ class AdminController {
         ]);
     }
 
+    /*
+     * Supprimer un commentaire.
+     */
     public function deleteComment()
     {
         $this->redirectIfUserNotConnected();

@@ -14,6 +14,9 @@
      private int $nbViews = 0;
      private int $nbComments = 0;
 
+     /**
+      * Incrémente le nombre de vues de UN et retourne le nouveau nombre de vues.
+      */
      public function incNbViews() : int
      {
          return ++$this->nbViews;
