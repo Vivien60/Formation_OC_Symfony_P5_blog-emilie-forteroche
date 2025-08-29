@@ -112,7 +112,7 @@ class ArticleManager extends AbstractEntityManager
     }
 
     /**
-     * Incrémente le nombre de vues d'un article donné et sauvegarde
+     * Incrémente le nombre de vues d'un article donné
      */
     public function incNbViews(Article $article) : void
     {
