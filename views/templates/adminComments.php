@@ -1,7 +1,7 @@
 <?php
     /** 
-     * Affichage de la partie admin : liste des articles avec un monitoring :
-     * nombre de vues, nombre de commentaires, date de publication.
+     * Affichage de la partie admin : liste des commentaires d'un article avec un monitoring :
+     * auteur, commentaire, date de publication, puis un bouton "supprimer".
      */
     /** @var Article $article */
     $urlPage = "?action=monitorComments&id={$article->getId()}";
