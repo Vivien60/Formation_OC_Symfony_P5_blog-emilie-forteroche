@@ -1,7 +1,7 @@
 <?php
     /** 
-     * Affichage de la partie admin : liste des articles avec un monitoring :
-     * nombre de vues, nombre de commentaires, date de publication.
+     * Affichage de la partie admin : liste des commentaires d'un article avec un monitoring :
+     * auteur, commentaire, date de publication, puis un bouton "supprimer".
      */
     /** @var Article $article */
     $urlPage = "?action=monitorComments&id={$article->getId()}";
@@ -22,7 +22,7 @@
             ?>
             <div class="content"><?= Utils::format($comment->getPseudo()) ?></div>
             <div class="content"><?= Utils::format($comment->getContent()) ?></div>
-            <div class="content"><?= $comment->getDateCreation()->format('Y-m-d') ?></div>
+            <div class="content"><?= $comment->getDateCreation()->format('d/m/Y') ?></div>
             <div><a class="submit gridList__cell--button" href="?action=deleteComment&id=<?= $comment->getId() ?>">Supprimer</a></div>
         <?php } ?>
     </div>
