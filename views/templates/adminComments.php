@@ -22,7 +22,7 @@
             ?>
             <div class="content"><?= Utils::format($comment->getPseudo()) ?></div>
             <div class="content"><?= Utils::format($comment->getContent()) ?></div>
-            <div class="content"><?= $comment->getDateCreation()->format('Y-m-d') ?></div>
+            <div class="content"><?= $comment->getDateCreation()->format('d/m/Y') ?></div>
             <div><a class="submit gridList__cell--button" href="?action=deleteComment&id=<?= $comment->getId() ?>">Supprimer</a></div>
         <?php } ?>
     </div>
