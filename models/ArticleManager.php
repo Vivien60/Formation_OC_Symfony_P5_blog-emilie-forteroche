@@ -14,8 +14,8 @@ class ArticleManager extends AbstractEntityManager
         $order = match($orderColumn) {
             'title' => 3,
             'date-pub' => 5,
-            'views' => 7,
-            'nb-comments' => 8,
+            'views' => 6,
+            'nb-comments' => 7,
             default => 1,
         };
         //La colonne peut être passée sous forme de numéro,

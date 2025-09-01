@@ -21,7 +21,7 @@
                 <div class="title"><?= Utils::format($article->getTitle()) ?></div>
                 <div class="content"><?= $article->getNbViews() ?></div>
                 <div class="content"><?= $article->getNbComments() ?></div>
-                <div class="content"><?= $article->getDateCreation()->format('Y-m-d') ?></div>
+                <div class="content"><?= $article->getDateCreation()->format('d/m/Y') ?></div>
                 <div><a class="submit gridList__cell--button" href="index.php?action=monitorComments&id=<?= $article->getId() ?>">Commentaires</a></div>
         <?php } ?>
     </div>
