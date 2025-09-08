@@ -1,1 +1,1 @@
-ALTER TABLE article ADD nb_views INT;
+ALTER TABLE article ADD nb_views INT default 0;
